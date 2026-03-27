@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCSE LAN Designer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="visualiser-page">
+    <header class="topbar">
+      <div class="topbar-copy">
+        <p class="eyebrow">Computer Science Revision</p>
+        <nav class="page-nav" aria-label="Pages">
+          <a class="page-nav-link" href="index.html">Visualiser</a>
+          <a class="page-nav-link active" href="designer.html">LAN Designer</a>
+        </nav>
+        <h1>Build Your Own LAN</h1>
+        <p class="intro">Add hardware and computers, place them on the canvas, then connect devices to design a local area network.</p>
+      </div>
+      <div class="topbar-controls designer-toolbar">
+        <button id="connect-mode-button" class="action-button" type="button">Connect devices</button>
+        <button id="clear-connections-button" class="action-button secondary" type="button">Clear connections</button>
+        <button id="reset-design-button" class="action-button secondary" type="button">Reset designer</button>
+      </div>
+    </header>
+
+    <main class="designer-layout">
+      <aside class="designer-sidebar">
+        <section class="info-card">
+          <p class="section-label">Add device</p>
+          <form id="device-form" class="designer-form">
+            <label class="field-block">
+              <span>Device type</span>
+              <select id="device-type" class="form-control">
+                <option value="isp">ISP</option>
+                <option value="router">Router</option>
+                <option value="switch">Switch</option>
+                <option value="wap">Wireless access point</option>
+                <option value="server">Server</option>
+                <option value="desktop">Desktop / PC</option>
+                <option value="laptop">Laptop</option>
+                <option value="printer">Printer</option>
+                <option value="phone">Phone</option>
+                <option value="tv">TV</option>
+              </select>
+            </label>
+            <label class="field-block">
+              <span>Device name</span>
+              <input id="device-name" class="form-control" type="text" placeholder="e.g. Office Switch">
+            </label>
+            <button class="action-button" type="submit">Add to canvas</button>
+          </form>
+        </section>
+
+        <section class="info-card">
+          <p class="section-label">Connection type</p>
+          <div class="connection-choice-group">
+            <label class="choice-chip compact">
+              <input type="radio" name="connection-type" value="utp" checked>
+              <span>UTP</span>
+            </label>
+            <label class="choice-chip compact">
+              <input type="radio" name="connection-type" value="wifi">
+              <span>Wi-Fi</span>
+            </label>
+            <label class="choice-chip compact">
+              <input type="radio" name="connection-type" value="fibre">
+              <span>Fibre optic</span>
+            </label>
+          </div>
+          <label class="choice-chip compact toggle-chip">
+            <input id="designer-connection-colours-toggle" type="checkbox">
+            <span>Use connection colours</span>
+          </label>
+          <p class="small-note">In connect mode, click one device and then another to draw a UTP, Wi-Fi, or fibre optic link.</p>
+        </section>
+
+        <section class="info-card">
+          <p class="section-label">Selected item</p>
+          <div id="designer-info" class="node-info">
+            <h3>No device selected</h3>
+            <p>Click a device on the canvas to inspect it or remove it.</p>
+          </div>
+          <button id="delete-device-button" class="action-button danger" type="button" disabled>Delete selected device</button>
+        </section>
+
+        <section class="info-card">
+          <p class="section-label">Save LAN</p>
+          <label class="field-block">
+            <span>LAN name</span>
+            <input id="save-lan-name" class="form-control" type="text" placeholder="e.g. My School Lab">
+          </label>
+          <button id="save-lan-button" class="action-button" type="button">Save LAN to menu</button>
+          <p id="save-status" class="small-note">Saved LANs will appear on the Visualiser page.</p>
+        </section>
+      </aside>
+
+      <section class="designer-stage-wrap">
+        <div class="info-card designer-instructions">
+          <p class="section-label">How to use</p>
+          <ul class="revision-points">
+            <li>Add routers, switches, WAPs, servers, computers, printers, and phones.</li>
+            <li>Add an ISP node when you want to show the router linking out to the provider.</li>
+            <li>Drag devices to move them around the LAN canvas.</li>
+            <li>Use connect mode to join devices with UTP, Wi-Fi, or fibre optic links.</li>
+            <li>Build a sensible LAN: for example, desktops usually connect to a switch, and laptops may connect through a WAP.</li>
+          </ul>
+        </div>
+
+        <div class="designer-stage">
+          <svg id="designer-svg" viewBox="0 0 1400 900" role="img" aria-label="LAN design canvas"></svg>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="designer.js"></script>
+</body>
+</html>

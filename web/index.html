@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCSE Networks Visualiser</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="visualiser-page">
+    <header class="topbar">
+      <div class="topbar-copy">
+        <p class="eyebrow">Computer Science Revision</p>
+        <nav class="page-nav" aria-label="Pages">
+          <a class="page-nav-link active" href="index.html">Visualiser</a>
+          <a class="page-nav-link" href="designer.html">LAN Designer</a>
+        </nav>
+        <h1>GCSE Networks Visualiser</h1>
+        <p class="intro">WAN at the top, selected LANs below. UTP and fibre are solid, while Wi-Fi is dashed.</p>
+      </div>
+      <div class="topbar-controls">
+        <details class="control-dropdown" open>
+          <summary>LAN Selection</summary>
+          <form id="network-form" class="network-form">
+            <label class="choice-chip">
+              <input type="checkbox" name="network" value="home" checked>
+              <span>Home LAN</span>
+            </label>
+            <label class="choice-chip">
+              <input type="checkbox" name="network" value="school" checked>
+              <span>School LAN</span>
+            </label>
+            <label class="choice-chip">
+              <input type="checkbox" name="network" value="business">
+              <span>Business LAN</span>
+            </label>
+            <div class="saved-network-panel">
+              <p class="section-label">Saved Student LANs</p>
+              <div id="saved-network-options" class="saved-network-options">
+                <p class="small-note">No saved LANs yet. Save one from the LAN Designer page.</p>
+              </div>
+            </div>
+          </form>
+        </details>
+        <details class="control-dropdown" open>
+          <summary>Display Options</summary>
+          <div class="dropdown-controls">
+            <label class="choice-chip toggle-chip">
+              <input id="show-lines-toggle" type="checkbox" checked>
+              <span>Show connection lines</span>
+            </label>
+            <label class="choice-chip toggle-chip">
+              <input id="show-wan-lines-toggle" type="checkbox" checked>
+              <span>Show WAN lines</span>
+            </label>
+            <label class="choice-chip toggle-chip">
+              <input id="show-connection-colours-toggle" type="checkbox">
+              <span>Use connection colours</span>
+            </label>
+          </div>
+        </details>
+        <div class="legend">
+          <span><i class="legend-line"></i> UTP / Fibre</span>
+          <span><i class="legend-line dashed"></i> Wi-Fi</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="visualiser-main">
+      <div id="empty-state" class="empty-state" hidden>
+        Choose at least one LAN to display the network.
+      </div>
+
+      <section id="diagram-wrapper" class="diagram-stage">
+        <svg id="network-svg" viewBox="0 0 1200 800" role="img" aria-label="Network diagram"></svg>
+      </section>
+
+      <aside class="info-strip">
+        <section class="info-card">
+          <p class="section-label">Node key</p>
+          <div id="node-legend" class="node-legend"></div>
+        </section>
+
+        <section class="info-card">
+          <p class="section-label">Selected item</p>
+          <div id="node-info" class="node-info">
+            <h3>Click a device</h3>
+            <p>Select a node in the diagram to see what it does in the network.</p>
+          </div>
+        </section>
+
+        <section class="info-card">
+          <p class="section-label">Connection Highlight</p>
+          <div id="connection-info" class="node-info">
+            <h3>Highlight by type</h3>
+            <p>Choose a connection type to highlight all links of that type while you talk through the network.</p>
+          </div>
+          <label class="field-block">
+            <span>Connection type</span>
+            <select id="connection-colour-select" class="form-control">
+              <option value="default">Default</option>
+              <option value="wifi">Wi-Fi</option>
+              <option value="utp">UTP</option>
+              <option value="fibre">Fibre optic</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="info-card">
+          <p class="section-label">GCSE focus</p>
+          <ul class="revision-points">
+            <li>A LAN is a local area network inside one site, like a home or school.</li>
+            <li>A WAN links LANs over a large area, usually using the internet.</li>
+            <li>Routers move data between networks. Switches connect wired devices inside a LAN.</li>
+            <li>Wireless access points let laptops and phones join without cables.</li>
+          </ul>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
